@@ -13,42 +13,8 @@ import { useRouter } from 'expo-router';
 import { useUserData } from '../context/UserDataContext';
 import { useAuth } from '../context/AuthContext';
 
-interface UserData {
-  totalCarbonSaved: number;
-  weeklyGoal: number;
-  monthlyGoal: number;
-  currentStreak: number;
-  longestStreak: number;
-  totalActions: number;
-  coins: number;
-  level: number;
-  weeklyData: Array<{
-    day: string;
-    carbon: number;
-    actions: number;
-  }>;
-  actionTypes: Array<{
-    name: string;
-    value: number;
-    color: string;
-  }>;
-  achievements: Array<{
-    title: string;
-    unlocked: boolean;
-    date?: string;
-    target?: number;
-  }>;
-}
-
-interface MetricCardProps {
-  title: string;
-  value: string;
-  icon: keyof typeof Ionicons.glyphMap;
-  color: string;
-  isNewUser?: boolean;
-}
-
-const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon, color, isNewUser }) => (
+// Plain JS: MetricCard shows a small metric tile.
+const MetricCard = ({ title, value, icon, color, isNewUser }) => (
   <LinearGradient
     colors={['rgba(255,255,255,0.9)', 'rgba(255,255,255,0.7)']}
     style={styles.card}
@@ -135,15 +101,15 @@ export default function ClimateMonitoringDashboard() {
               </Text>
               <View style={styles.quickActions}>
                 <TouchableOpacity 
-                  style={styles.quickActionButton}
-                  onPress={() => router.push('/calculator' as any)}
-                >
+                    style={styles.quickActionButton}
+                    onPress={() => router.push('/calculator')}
+                  >
                   <Ionicons name="calculator" size={20} color="#fff" />
                   <Text style={styles.quickActionText}>Calculate Footprint</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                   style={styles.quickActionButton}
-                  onPress={() => router.push('/action' as any)}
+                  onPress={() => router.push('/action')}
                 >
                   <Ionicons name="add-circle" size={20} color="#fff" />
                   <Text style={styles.quickActionText}>Log Action</Text>
@@ -156,14 +122,14 @@ export default function ClimateMonitoringDashboard() {
           <View style={styles.metricsGrid}>
             <MetricCard
               title="Carbon Saved"
-              value={${userData.totalCarbonSaved} kg}
+              value={`${userData.totalCarbonSaved} kg`}
               icon="leaf"
               color="#10b981"
               isNewUser={isNewUser}
             />
             <MetricCard
               title="Current Streak"
-              value={${userData.currentStreak} days}
+              value={`${userData.currentStreak} days`}
               icon="flame"
               color="#f59e0b"
               isNewUser={isNewUser}
@@ -252,7 +218,7 @@ export default function ClimateMonitoringDashboard() {
                   </Text>
                   <TouchableOpacity 
                     style={styles.guideButton}
-                    onPress={() => router.push('/calculator' as any)}
+                    onPress={() => router.push('/calculator')}
                   >
                     <Text style={styles.guideButtonText}>Start Now</Text>
                   </TouchableOpacity>
