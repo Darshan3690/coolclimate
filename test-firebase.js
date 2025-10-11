@@ -4,7 +4,7 @@ import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDSMrxPgDSr0ihEFpIuw3HY_RZdnchl5nY",
+  apiKey: "",
   authDomain: "carbon-footprint-tracker-ca4f8.firebaseapp.com",
   projectId: "carbon-footprint-tracker-ca4f8",
   storageBucket: "carbon-footprint-tracker-ca4f8.firebasestorage.app",
