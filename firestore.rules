@@ -1,0 +1,28 @@
+// Firestore Security Rules for Development
+// WARNING: These rules allow anyone to read/write to your database.
+// Use more restrictive rules in production!
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow authenticated users to read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Allow authenticated users to read/write carbon calculations
+    match /carbon_calculations/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Allow authenticated users to read/write user data
+    match /user_data/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // For development only - remove in production
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

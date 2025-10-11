@@ -1,15 +1,9 @@
-
+import '../styles/output.css';
 import { Stack } from 'expo-router';
 import { AuthProvider } from '../context/AuthContext';
 import { UserDataProvider } from '../context/UserDataContext';
 
-if (typeof document !== 'undefined') {
-  try {
-    require('../styles/output.css');
-  } catch (e) {}
-}
-
-export default function RootLayout() {
+export default function RootLayoutWeb() {
   return (
     <AuthProvider>
       <UserDataProvider>
