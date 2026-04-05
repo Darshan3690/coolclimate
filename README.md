@@ -5,7 +5,7 @@
 
 ---
 
-<h2>⚙️ Quick Start</h2>
+<h2>⚙️ Quick Start and Fast</h2>
 
 <pre><code>npm install
 npx expo start 
